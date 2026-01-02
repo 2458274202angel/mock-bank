@@ -4,30 +4,154 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>College Bank</title>
+
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;padding:24px;background:#f3f6fb;color:#0b1220}
-    .card{max-width:720px;margin:0 auto;background:#fff;border:1px solid #e3e9f3;border-radius:16px;padding:18px}
-    a{color:#2155ff;text-decoration:none;font-weight:700}
-    a:hover{text-decoration:underline}
-    .muted{color:#5b667a;font-size:13px}
+    :root{
+      --blue:#0b4dbb;
+      --blue-dark:#083a8c;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#0b1220;
+      --muted:#5b667a;
+      --line:#e3e9f3;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    /* Header */
+    header{
+      background:linear-gradient(180deg,var(--blue),var(--blue-dark));
+      color:#fff;
+      padding:16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    header h1{
+      margin:0;
+      font-size:18px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .avatar{
+      width:32px;height:32px;border-radius:50%;
+      background:rgba(255,255,255,.2);
+      display:grid;place-items:center;
+      font-weight:700;
+    }
+
+    /* Layout */
+    main{
+      max-width:420px;
+      margin:0 auto;
+      padding:16px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px;
+      margin-bottom:16px;
+    }
+
+    .label{color:var(--muted);font-size:13px}
+    .balance{
+      font-size:34px;
+      font-weight:900;
+      margin:6px 0 2px;
+      letter-spacing:-.5px;
+    }
+
+    .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid var(--line);
+    }
+
+    .tx{
+      display:flex;
+      justify-content:space-between;
+      margin-top:12px;
+    }
+    .tx small{color:var(--muted)}
+    .neg{color:#c0362c}
+
+    .btns{
+      display:flex;
+      gap:10px;
+      margin-top:14px;
+    }
+    button{
+      flex:1;
+      border:none;
+      border-radius:14px;
+      padding:12px;
+      font-weight:700;
+      background:#eef3ff;
+      color:var(--blue-dark);
+    }
   </style>
 </head>
+
 <body>
-  <div class="card">
-    <h2 style="margin:0 0 6px;">College Bank</h2>
-    <div class="muted" style="margin-bottom:14px;">Choose a view, or let auto-detect open the best one.</div>
 
-    <p style="margin:0 0 8px;"><a href="./mobile.html">Open Mobile Version</a></p>
-    <p style="margin:0;"><a href="./desktop.html">Open Desktop Version</a></p>
+<header>
+  <h1>College Bank</h1>
+  <div class="avatar">A</div>
+</header>
 
-    <p class="muted" style="margin-top:14px;">Auto-opening mobile on phones…</p>
-  </div>
+<main>
 
-  <script>
-    // Auto redirect: phones -> mobile, desktops -> desktop
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (window.innerWidth < 700);
-    window.location.replace(isMobile ? "./mobile.html" : "./desktop.html");
-  </script>
+  <section class="card">
+    <div class="label">College Checking •••• 7120</div>
+    <div class="balance">$21,223.00</div>
+    <div class="label">Available balance</div>
+
+    <div class="btns">
+      <button>Transfer</button>
+      <button>Pay bill</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="label">Recent transactions</div>
+
+    <div class="tx">
+      <div>
+        <strong>Coffee Shop</strong><br>
+        <small>Dec 26</small>
+      </div>
+      <div class="neg">− $6.75</div>
+    </div>
+
+    <div class="tx">
+      <div>
+        <strong>Metro</strong><br>
+        <small>Dec 26</small>
+      </div>
+      <div class="neg">− $2.90</div>
+    </div>
+
+    <div class="tx">
+      <div>
+        <strong>Corner Store</strong><br>
+        <small>Dec 25</small>
+      </div>
+      <div class="neg">− $4.18</div>
+    </div>
+  </section>
+
+</main>
+
 </body>
 </html>
-
