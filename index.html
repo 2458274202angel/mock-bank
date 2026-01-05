@@ -20,7 +20,7 @@
       --chip:#eef3ff;
       --shadow: 0 10px 26px rgba(11,18,32,.10);
       --r:18px;
-      --sans: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      --sans: system-ui,-apple-system, Segoe UI, Roboto, Helvetica, Arial;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
     }
 
@@ -55,7 +55,7 @@
       font-weight:800;
     }
 
-    /* Quick actions (like the “pill” row) */
+    /* Quick actions (pill row) */
     .quick{
       max-width: 980px;
       margin: 12px auto 0;
@@ -183,7 +183,11 @@
     .tx .d{color:var(--muted);font-size:12px;margin-top:2px}
     .tx .v{font-family:var(--mono);font-weight:900;color:#c0362c;white-space:nowrap}
 
-    /* Bottom nav (mobile-like) */
+    /* Pending styling */
+    .status{color:var(--muted);font-size:12px;margin-top:2px}
+    .pos{color:var(--brand)}  /* positive amount in blue */
+
+    /* Bottom nav */
     .bottom{
       position: fixed;
       left:0; right:0; bottom:0;
@@ -283,7 +287,7 @@
               <div class="acct-sub">College Bank</div>
             </div>
             <div>
-              <div class="amt" id="avail">$21,223.00</div>
+              <div class="amt" id="avail">$71,207.00</div>
               <div class="lbl">Available balance</div>
             </div>
           </div>
@@ -292,6 +296,23 @@
             <button class="btn primary">Transfer</button>
             <button class="btn">Pay bill</button>
             <button class="btn" data-disabled="1">View statements</button>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Pending credit (adds into available balance per your request) -->
+          <div class="tx-head">
+            <div>Pending</div>
+            <div class="count">Not posted</div>
+          </div>
+          <div class="tx">
+            <div>
+              <div class="m" style="text-transform:uppercase;">
+                BOOK TRANSFER CREDIT B/O: INDUSTRIAL AND COMMERCIAL
+              </div>
+              <div class="status">Pending</div>
+            </div>
+            <div class="v pos">+ $49,984.00</div>
           </div>
 
           <div class="divider"></div>
@@ -393,8 +414,10 @@
   </footer>
 
   <script>
-    // Ensure exact requested balance
-    const availableBalance = 21223;
+    // Available balance includes pending credit per your request:
+    // 21,223 + 49,984 = 71,207
+    const availableBalance = 71207;
+
     document.getElementById('avail').textContent =
       new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', minimumFractionDigits:2 })
         .format(availableBalance);
